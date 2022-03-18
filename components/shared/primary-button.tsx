@@ -1,10 +1,17 @@
 import { FunctionComponent } from "react";
 import { TouchableOpacity, StyleSheet } from "react-native";
 import { CSS_COLOR, CSS_SPACING } from "../../constants/style";
-type Props = unknown;
+type Props = {
+  onPress: () => void;
+};
 
-export const PrimaryButton: FunctionComponent<Props> = ({ children }) => (
-  <TouchableOpacity style={styles.button}>{children}</TouchableOpacity>
+export const PrimaryButton: FunctionComponent<Props> = ({
+  children,
+  onPress,
+}) => (
+  <TouchableOpacity style={styles.button} onPress={onPress}>
+    {children}
+  </TouchableOpacity>
 );
 
 const styles = StyleSheet.create({

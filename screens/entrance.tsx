@@ -1,5 +1,5 @@
 import React from "react";
-import { FunctionComponent } from "react";
+import type { FunctionComponent } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { PrimaryButton } from "../components/shared/primary-button";
 import {
@@ -9,15 +9,16 @@ import {
   CSS_DROP_SHADOW,
   CSS_SPACING,
 } from "../constants/style";
+import { Navigation } from ".";
 
-type Props = unknown;
+type Props = { navigation: Navigation };
 
-export const Entrance: FunctionComponent<Props> = () => (
+export const Entrance: FunctionComponent<Props> = ({ navigation }) => (
   <View style={styles.container}>
     <Text style={styles.icon}>🃏</Text>
     <Text style={styles.text}>Yaniv Counter</Text>
     <View style={styles.button}>
-      <PrimaryButton>
+      <PrimaryButton onPress={() => navigation.navigate("members")}>
         <Text style={styles.label}>Start</Text>
       </PrimaryButton>
     </View>

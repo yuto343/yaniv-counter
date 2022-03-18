@@ -1,10 +1,22 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import {
+  createNativeStackNavigator,
+  NativeStackScreenProps,
+} from "@react-navigation/native-stack";
 import { View, StyleSheet } from "react-native";
 import { Entrance } from "./entrance";
+import { Members } from "./members";
 
-const Stack = createNativeStackNavigator();
+export type StackParamList = {
+  // undefinedはparamsがないということ
+  entrance: undefined;
+  members: undefined;
+};
+
+export type Navigation = NativeStackScreenProps<StackParamList>["navigation"];
+
+const Stack = createNativeStackNavigator<StackParamList>();
 
 export const Screens = () => (
   <View style={styles.container}>
@@ -14,6 +26,7 @@ export const Screens = () => (
         screenOptions={{ headerShown: false }}
       >
         <Stack.Screen component={Entrance} name='entrance' />
+        <Stack.Screen component={Members} name='members' />
       </Stack.Navigator>
     </NavigationContainer>
   </View>
