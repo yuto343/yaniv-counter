@@ -1,21 +1,19 @@
+import React from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
-import { CSS_COLOR } from "./constants/style";
+import { StyleSheet, View } from "react-native";
 import { Screens } from "./screens";
+
 export default function App() {
   return (
     <View style={styles.container}>
-      <StatusBar style='auto' />
       <Screens />
+      <StatusBar style='auto' />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: CSS_COLOR.BG_BEIGE,
-    alignItems: "center",
-    justifyContent: "center",
+    flex: 1, //これがないと表示が消えるので仕方なく
   },
 });
