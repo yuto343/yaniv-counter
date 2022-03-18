@@ -1,13 +1,26 @@
 import React from "react";
 import { FunctionComponent } from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { CSS_COLOR } from "../constants/style";
+import { PrimaryButton } from "../components/shared/primary-button";
+import {
+  CSS_COLOR,
+  CSS_EMOJI_SIZE,
+  CSS_FONT_SIZE,
+  CSS_DROP_SHADOW,
+  CSS_SPACING,
+} from "../constants/style";
 
 type Props = unknown;
 
 export const Entrance: FunctionComponent<Props> = () => (
   <View style={styles.container}>
-    <Text>Yaniv Counter</Text>
+    <Text style={styles.icon}>🃏</Text>
+    <Text style={styles.text}>Yaniv Counter</Text>
+    <View style={styles.button}>
+      <PrimaryButton>
+        <Text style={styles.label}>Start</Text>
+      </PrimaryButton>
+    </View>
   </View>
 );
 
@@ -17,5 +30,21 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: CSS_COLOR.BG_BEIGE,
+  },
+  icon: {
+    fontSize: CSS_EMOJI_SIZE.M,
+    ...CSS_DROP_SHADOW,
+  },
+  text: {
+    fontFamily: "Nunito-Bold",
+    fontSize: CSS_FONT_SIZE.PX_24,
+  },
+  button: { width: "50%", marginTop: CSS_SPACING.PX_12 },
+  label: {
+    fontFamily: "Nunito-Bold",
+    fontSize: CSS_FONT_SIZE.PX_20,
+    letterSpacing: 1.2,
+    textAlign: "center",
+    color: CSS_COLOR.WHITE,
   },
 });
