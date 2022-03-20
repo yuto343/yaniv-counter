@@ -1,7 +1,10 @@
 export const CSS_COLOR = {
 	WHITE:"#fff",
+	BLACK:"#2c2c2c",
 	BG_BEIGE:"#F0E8D9",
-	GREEN:"#5EBE62"
+	INPUT_BEIGE:"#E4DCCB",
+	GREEN:"#5EBE62",
+	DANGER:"#FB8787"
 } as const
 
 export const CSS_FONT_SIZE = {
@@ -49,3 +52,4 @@ export const CSS_DROP_SHADOW = {
 	shadowRadius: 2,
 	elevation: 1,
 } as const
+
