@@ -1,4 +1,4 @@
-import type { MembersDomain } from "../store/members"
+import type { YanivDomain } from "../store/yaniv"
 import type { MembersUi } from "../uis/members"
 
 type AddMember = (
@@ -6,20 +6,20 @@ type AddMember = (
 		name:string
 	},
 	context:{
-		membersDomain:MembersDomain
+		yanivDomain:YanivDomain
 		ui:MembersUi
 	}
 ) => void
 
-export const addMember:AddMember = ({name},{membersDomain,ui}) => {
+export const addMember:AddMember = ({name},{yanivDomain,ui}) => {
 	// 未入力は許さない
 	if(name === "") return  
 
 	// すでに同じ名前の人がいる場合も許さない
-	if(membersDomain.members?.find(member => member.name === name))return
+	if(yanivDomain.members?.find(member => member.name === name))return
 
 	// そうじゃないならOK
-	membersDomain.addMember(name);
+	yanivDomain.addMember(name);
 	ui.updateDraftName("")
 	ui.toggleModalOpen()
 

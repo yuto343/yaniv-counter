@@ -2,24 +2,24 @@ import { FunctionComponent, useContext } from "react";
 import { Text, View, StyleSheet, TextInput } from "react-native";
 import { Navigation } from ".";
 import { CSS_COLOR, CSS_FONT_SIZE, CSS_SPACING } from "../constants/style";
-import { MembersContext } from "../store/members";
+import { YanivContext } from "../store/yaniv";
 
 type Props = {
   navigation: Navigation;
 };
 export const Point: FunctionComponent<Props> = ({ navigation }) => {
-  const membersDomain = useContext(MembersContext);
+  const yanivDomain = useContext(YanivContext);
   return (
     <View style={styles.container}>
       {/* タイトル */}
       <Text style={styles.heading}>Max Point?</Text>
 
       <TextInput
-        defaultValue={`${membersDomain.maxPoint}`}
+        defaultValue={`${yanivDomain.maxPoint}`}
         keyboardAppearance='dark'
         style={styles.input}
         onChangeText={(text) => {
-          membersDomain.changeMaxPoint(Number(text));
+          yanivDomain.changeMaxPoint(Number(text));
         }}
         textAlign='center'
         keyboardType='number-pad'

@@ -13,14 +13,14 @@ import { addMember } from "../actions/members";
 import { IconClose, IconClose2, IconPlus } from "../components/shared/icon";
 import { PrimaryButton } from "../components/shared/primary-button";
 import { CSS_COLOR, CSS_FONT_SIZE, CSS_SPACING } from "../constants/style";
-import { MembersContext } from "../store/members";
+import { YanivContext } from "../store/yaniv";
 import { MembersUi } from "../uis/members";
 
 type Props = {
   navigation: Navigation;
 };
 export const Members: FunctionComponent<Props> = ({ navigation }) => {
-  const membersDomain = useContext(MembersContext);
+  const yanivDomain = useContext(YanivContext);
   const ui = new MembersUi();
   return (
     <View style={styles.container}>
@@ -31,14 +31,14 @@ export const Members: FunctionComponent<Props> = ({ navigation }) => {
       <Observer>
         {() => (
           <View>
-            {membersDomain.members.map((member) => (
+            {yanivDomain.members.map((member) => (
               <View key={member.name} style={styles.user}>
                 <View style={styles.nameWrapper}>
                   <Text style={styles.name}>{member.name}</Text>
                 </View>
                 <TouchableOpacity
                   onPress={() => {
-                    membersDomain.deleteMember(member.name);
+                    yanivDomain.deleteMember(member.name);
                   }}
                 >
                   <View style={styles.deleteButton}>
@@ -101,7 +101,7 @@ export const Members: FunctionComponent<Props> = ({ navigation }) => {
                     returnKeyType='done'
                     multiline={false}
                     onSubmitEditing={() =>
-                      addMember({ name: ui.draftName }, { membersDomain, ui })
+                      addMember({ name: ui.draftName }, { yanivDomain, ui })
                     }
                     autoFocus={true}
                     blurOnSubmit={false}

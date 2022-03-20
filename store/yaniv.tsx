@@ -3,10 +3,11 @@ import { makeObservable, observable, action } from "mobx";
 
 type member = {
   name: string;
-  point: number[];
+  points: number[];
+  total: number;
 };
 
-export class MembersDomain {
+export class YanivDomain {
   members: member[];
   maxPoint: number;
 
@@ -14,7 +15,7 @@ export class MembersDomain {
     this.members = [];
     this.maxPoint = 100;
 
-    makeObservable<MembersDomain>(this, {
+    makeObservable<YanivDomain>(this, {
       members: observable,
       addMember: action,
       maxPoint: observable,
@@ -23,7 +24,7 @@ export class MembersDomain {
   }
 
   addMember(name: string): void {
-    this.members = [...this.members, { name, point: [] }];
+    this.members = [...this.members, { name, points: [], total: 0 }];
   }
 
   deleteMember(name: string): void {
@@ -35,4 +36,4 @@ export class MembersDomain {
   }
 }
 
-export const MembersContext = createContext(new MembersDomain());
+export const YanivContext = createContext(new YanivDomain());
