@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import type { FunctionComponent } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { PrimaryButton } from "../components/shared/primary-button";
@@ -10,20 +10,24 @@ import {
   CSS_SPACING,
 } from "../constants/style";
 import { Navigation } from ".";
+import { YanivContext } from "../store/yaniv";
+import { Observer } from "mobx-react-lite";
 
 type Props = { navigation: Navigation };
 
-export const Entrance: FunctionComponent<Props> = ({ navigation }) => (
-  <View style={styles.container}>
-    <Text style={styles.icon}>🃏</Text>
-    <Text style={styles.text}>Yaniv Counter</Text>
-    <View style={styles.button}>
-      <PrimaryButton onPress={() => navigation.navigate("members")}>
-        <Text style={styles.label}>Start</Text>
-      </PrimaryButton>
+export const Entrance: FunctionComponent<Props> = ({ navigation }) => {
+  return (
+    <View style={styles.container}>
+      <Text style={styles.icon}>🃏</Text>
+      <Text style={styles.text}>Yaniv Counter</Text>
+      <View style={styles.button}>
+        <PrimaryButton onPress={() => navigation.push("members")}>
+          <Text style={styles.label}>Start</Text>
+        </PrimaryButton>
+      </View>
     </View>
-  </View>
-);
+  );
+};
 
 const styles = StyleSheet.create({
   container: {

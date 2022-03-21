@@ -21,6 +21,7 @@ type Props = {
 };
 export const Members: FunctionComponent<Props> = ({ navigation }) => {
   const yanivDomain = useContext(YanivContext);
+  yanivDomain.reset();
   const ui = new MembersUi();
   return (
     <View style={styles.container}>

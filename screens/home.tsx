@@ -1,10 +1,13 @@
 import React, { useContext } from "react";
 import type { FunctionComponent } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Alert } from "react-native";
 import { CSS_COLOR, CSS_FONT_SIZE, CSS_SPACING } from "../constants/style";
 import { Navigation } from ".";
 import { YanivContext } from "../store/yaniv";
 import { PrimaryButton } from "../components/shared/primary-button";
+import { Observer } from "mobx-react-lite";
+import { SecondaryButton } from "../components/shared/secondary-button";
+import { createFinishAlert } from "../components/home/finish-alert";
 
 type Props = { navigation: Navigation };
 
@@ -12,32 +15,59 @@ export const Home: FunctionComponent<Props> = ({ navigation }) => {
   const yanivDomain = useContext(YanivContext);
 
   return (
-    <View style={styles.container}>
-      <View style={styles.heading}>
-        <Text style={styles.round}>Round 1</Text>
-        <Text style={styles.maxPoint}>MAX {yanivDomain.maxPoint}</Text>
-      </View>
-      <View style={styles.memberList}>
-        {yanivDomain.members.map((member) => (
-          <View key={member.name} style={styles.member}>
-            <Text style={styles.name}>{member.name}</Text>
-            <View style={styles.pointList}>
-              {member.points.map((point) => (
-                <Text style={styles.point}>{point}</Text>
-              ))}
-              <Text style={styles.allPoint}>{member.total}</Text>
+    <Observer>
+      {() => (
+        <View style={styles.container}>
+          <View style={styles.heading}>
+            <Text style={styles.round}>Round {yanivDomain.round}</Text>
+            <Text style={styles.maxPoint}>MAX {yanivDomain.maxPoint}</Text>
+          </View>
+          <View style={styles.memberList}>
+            {yanivDomain.members.map((member, memberIndex) => (
+              <View key={member.name} style={styles.member}>
+                <Text style={styles.name}>{member.name}</Text>
+                <View style={styles.pointList}>
+                  {member.points.map((point, index) => (
+                    <Text style={styles.point} key={index}>
+                      {point}
+                    </Text>
+                  ))}
+                  <Text style={styles.allPoint}>
+                    {yanivDomain.totalPoint(memberIndex)}
+                  </Text>
+                </View>
+              </View>
+            ))}
+          </View>
+          <View style={styles.buttonContainer}>
+            <View style={styles.button}>
+              <PrimaryButton
+                onPress={() =>
+                  navigation.navigate("result", { memberIndex: 0 })
+                }
+              >
+                <Text style={styles.label}>Add Result</Text>
+              </PrimaryButton>
+            </View>
+
+            <View style={styles.secondaryButton}>
+              <SecondaryButton
+                onPress={() =>
+                  createFinishAlert(
+                    () => {
+                      // 何もしない
+                    },
+                    () => navigation.popToTop()
+                  )
+                }
+              >
+                <Text style={styles.secondaryLabel}>Finish</Text>
+              </SecondaryButton>
             </View>
           </View>
-        ))}
-      </View>
-      <View style={styles.buttonContainer}>
-        <View style={styles.button}>
-          <PrimaryButton onPress={() => navigation.navigate("members")}>
-            <Text style={styles.label}>Add Result</Text>
-          </PrimaryButton>
         </View>
-      </View>
-    </View>
+      )}
+    </Observer>
   );
 };
 
@@ -102,5 +132,12 @@ const styles = StyleSheet.create({
     letterSpacing: 1.2,
     textAlign: "center",
     color: CSS_COLOR.WHITE,
+  },
+  secondaryButton: { width: "25%", marginTop: CSS_SPACING.PX_20 },
+  secondaryLabel: {
+    color: CSS_COLOR.BLACK,
+    fontFamily: "Nunito-Bold",
+    fontSize: CSS_FONT_SIZE.PX_18,
+    textAlign: "center",
   },
 });

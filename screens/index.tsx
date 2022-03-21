@@ -10,6 +10,7 @@ import { Members } from "./members";
 import { YanivContext, YanivDomain } from "../store/yaniv";
 import { Point } from "./point";
 import { Home } from "./home";
+import { Result } from "./result";
 
 export type StackParamList = {
   // undefinedはparamsがないということ
@@ -17,6 +18,7 @@ export type StackParamList = {
   members: undefined;
   point: undefined;
   home: undefined;
+  result: { memberIndex: number };
 };
 
 export type Navigation = NativeStackScreenProps<StackParamList>["navigation"];
@@ -35,6 +37,7 @@ export const Screens = () => (
           <Stack.Screen component={Members} name='members' />
           <Stack.Screen component={Point} name='point' />
           <Stack.Screen component={Home} name='home' />
+          <Stack.Screen component={Result} name='result' />
         </Stack.Navigator>
       </NavigationContainer>
     </YanivContext.Provider>
