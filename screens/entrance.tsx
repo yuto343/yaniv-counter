@@ -1,5 +1,6 @@
 import React from "react";
 import type { FunctionComponent } from "react";
+import * as Application from "expo-application";
 import { View, Text, StyleSheet } from "react-native";
 import { PrimaryButton } from "../components/shared/primary-button";
 import {
@@ -26,6 +27,10 @@ export const Entrance: FunctionComponent<Props> = ({ navigation }) => {
           <Text style={styles.label}>Start</Text>
         </PrimaryButton>
       </View>
+
+      <Text style={styles.version}>
+        Ver {Application.nativeApplicationVersion}
+      </Text>
     </View>
   );
 };
@@ -56,5 +61,11 @@ const styles = StyleSheet.create({
     letterSpacing: 1.2,
     textAlign: "center",
     color: CSS_COLOR.WHITE,
+  },
+  version: {
+    fontFamily: "Nunito-Bold",
+    fontSize: CSS_FONT_SIZE.PX_14,
+    position: "absolute",
+    bottom: CSS_SPACING.PX_52,
   },
 });
