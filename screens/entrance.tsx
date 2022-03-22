@@ -10,13 +10,16 @@ import {
   CSS_SPACING,
 } from "../constants/style";
 import { Navigation } from ".";
+import { IconTrumpCard } from "../components/shared/icon";
 
 type Props = { navigation: Navigation };
 
 export const Entrance: FunctionComponent<Props> = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.icon}>🃏</Text>
+      <View style={styles.iconWrapper}>
+        <IconTrumpCard size={110} />
+      </View>
       <Text style={styles.text}>Yaniv Counter</Text>
       <View style={styles.button}>
         <PrimaryButton onPress={() => navigation.push("members")}>
@@ -33,6 +36,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: CSS_COLOR.BG_BEIGE,
+  },
+  iconWrapper: {
+    marginBottom: CSS_SPACING.PX_12,
+    ...CSS_DROP_SHADOW,
   },
   icon: {
     fontSize: CSS_EMOJI_SIZE.M,
