@@ -87,6 +87,11 @@ export class YanivDomain {
     score: number
   ): void {
     this.members[memberIndex].scores[scoreIndex] = score;
+    let total = 0;
+    for (const score of this.members[memberIndex].scores) {
+      total += score;
+    }
+    this.members[memberIndex].total = total;
   }
 
   nextMatch(): void {
