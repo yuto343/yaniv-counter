@@ -1,5 +1,5 @@
 import { Observer } from "mobx-react-lite";
-import { FunctionComponent, useContext, useState } from "react";
+import { FunctionComponent, useContext } from "react";
 import {
   Text,
   View,
@@ -21,7 +21,7 @@ type Props = {
 };
 export const Members: FunctionComponent<Props> = ({ navigation }) => {
   const yanivDomain = useContext(YanivContext);
-  yanivDomain.reset();
+
   const ui = new MembersUi();
   return (
     <View style={styles.container}>
@@ -60,11 +60,18 @@ export const Members: FunctionComponent<Props> = ({ navigation }) => {
         <IconPlus size={24} color={CSS_COLOR.BLACK} />
       </TouchableOpacity>
 
-      <View style={styles.button}>
-        <PrimaryButton onPress={() => navigation.navigate("point")}>
-          <Text style={styles.label}>Next</Text>
-        </PrimaryButton>
-      </View>
+      <Observer>
+        {() => (
+          <View style={styles.button}>
+            <PrimaryButton
+              onPress={() => navigation.navigate("maxScore")}
+              disabled={yanivDomain.members.length < 2}
+            >
+              <Text style={styles.label}>Next</Text>
+            </PrimaryButton>
+          </View>
+        )}
+      </Observer>
 
       {/* モーダル */}
       <Observer>

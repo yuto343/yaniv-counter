@@ -7,19 +7,19 @@ import { YanivContext } from "../store/yaniv";
 type Props = {
   navigation: Navigation;
 };
-export const Point: FunctionComponent<Props> = ({ navigation }) => {
+export const MaxScore: FunctionComponent<Props> = ({ navigation }) => {
   const yanivDomain = useContext(YanivContext);
   return (
     <View style={styles.container}>
       {/* タイトル */}
-      <Text style={styles.heading}>Max Point?</Text>
+      <Text style={styles.heading}>Maximum Score?</Text>
 
       <TextInput
-        defaultValue={`${yanivDomain.maxPoint}`}
+        defaultValue={`${yanivDomain.maxScore}`}
         keyboardAppearance='dark'
         style={styles.input}
-        onChangeText={(text) => {
-          yanivDomain.changeMaxPoint(Number(text));
+        onChangeText={(score) => {
+          yanivDomain.changeMaxScore(Number(score));
         }}
         textAlign='center'
         keyboardType='number-pad'

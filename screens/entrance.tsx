@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import type { FunctionComponent } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { PrimaryButton } from "../components/shared/primary-button";
@@ -10,8 +10,6 @@ import {
   CSS_SPACING,
 } from "../constants/style";
 import { Navigation } from ".";
-import { YanivContext } from "../store/yaniv";
-import { Observer } from "mobx-react-lite";
 
 type Props = { navigation: Navigation };
 

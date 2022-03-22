@@ -2,16 +2,16 @@ import { action, makeObservable, observable } from "mobx"
 
 export class ResultUi {
 
-	roundPoint:number = 0
+	roundScore:number = 0
 	constructor(){
 		makeObservable<ResultUi>(this,{
-			roundPoint:observable,
-			updateRoundPoint:action
+			roundScore:observable,
+			updateRoundScore:action
 		})
 	}
 
-	updateRoundPoint (point:number):void{
-		this.roundPoint = point
+	updateRoundScore (score:number):void{
+		this.roundScore = score
 	}
 
 	

@@ -4,7 +4,8 @@ export const CSS_COLOR = {
 	BG_BEIGE:"#F0E8D9",
 	INPUT_BEIGE:"#E4DCCB",
 	GREEN:"#5EBE62",
-	DANGER:"#FB8787"
+	DANGER:"#FB8787",
+	GREY:"#CBC8C8"
 } as const
 
 export const CSS_FONT_SIZE = {

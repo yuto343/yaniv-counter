@@ -3,27 +3,30 @@ import { makeObservable, observable, action, computed } from "mobx";
 
 type member = {
   name: string;
-  points: number[];
+  scores: number[];
   total: number;
 };
 
 export class YanivDomain {
   members: member[];
-  maxPoint: number;
+  maxScore: number;
   round: number;
 
   constructor() {
     this.members = [];
-    this.maxPoint = 100;
+    this.maxScore = 100;
     this.round = 0;
 
     makeObservable<YanivDomain>(this, {
       members: observable,
       addMember: action,
-      maxPoint: observable,
+      maxScore: observable,
       deleteMember: action,
-      addRoundPoint: action,
+      addRoundScore: action,
+      nextMatch: action,
+      reset: action,
       totalMember: computed,
+      topScore: computed,
     });
   }
 
@@ -31,42 +34,64 @@ export class YanivDomain {
     return this.members.length;
   }
 
-  totalPoint(memberIndex: number) {
-    let totalPoint = 0;
+  get topScore() {
+    let firstPlace: member = this.members[0];
 
-    for (const point of this.members[memberIndex].points) {
-      totalPoint += point;
+    for (const [index, { total }] of this.members.entries()) {
+      if (firstPlace.total < total) continue;
+      firstPlace = this.members[index];
+    }
+    return firstPlace.total;
+  }
+
+  totalScore(memberIndex: number) {
+    let totalScore = 0;
+
+    for (const score of this.members[memberIndex].scores) {
+      totalScore += score;
     }
 
-    return totalPoint;
+    return totalScore;
   }
 
   addMember(name: string): void {
-    this.members = [...this.members, { name, points: [], total: 0 }];
+    this.members = [...this.members, { name, scores: [], total: 0 }];
   }
 
   deleteMember(name: string): void {
     this.members = this.members.filter((member) => member.name !== name);
   }
 
-  changeMaxPoint(point: number): void {
-    this.maxPoint = point;
+  changeMaxScore(score: number): void {
+    this.maxScore = score;
   }
 
-  addRoundPoint(memberIndex: number, point: number): void {
-    this.members[memberIndex].points.push(point);
+  incrementRound(): void {
+    this.round++;
+  }
+
+  addRoundScore(memberIndex: number, score: number): void {
+    const targetMember = this.members[memberIndex];
+    targetMember.scores.push(score);
+    targetMember.total += score;
   }
 
   nextMemberExist(memberIndex: number): boolean {
     return this.members.length >= memberIndex + 2;
   }
 
+  nextMatch(): void {
+    this.members.forEach((_, index) => {
+      this.members[index].scores = [];
+      this.members[index].total = 0;
+    });
+    this.round = 0;
+  }
+
   reset(): void {
     this.members = [];
-    this.maxPoint = 100;
+    this.maxScore = 100;
     this.round = 0;
-
-    console.log(this.members);
   }
 }
 

@@ -2,7 +2,7 @@ import { RouteProp } from "@react-navigation/native";
 import { FunctionComponent, useContext } from "react";
 import { Text, View, StyleSheet, TextInput } from "react-native";
 import { Navigation, StackParamList } from ".";
-import { submitPoint } from "../actions/result";
+import { submitScore } from "../actions/result";
 import { CSS_COLOR, CSS_FONT_SIZE, CSS_SPACING } from "../constants/style";
 import { YanivContext } from "../store/yaniv";
 import { ResultUi } from "../uis/result";
@@ -22,20 +22,20 @@ export const Result: FunctionComponent<Props> = ({ navigation, route }) => {
     <View style={styles.container}>
       {/* タイトル */}
       <Text style={styles.heading}>Round{yanivDomain.round}</Text>
-      <Text style={styles.lead}>{member.name}`s Point?</Text>
+      <Text style={styles.lead}>{member.name}`s Score?</Text>
       <TextInput
         keyboardAppearance='dark'
         style={styles.input}
-        onChangeText={(point) => {
-          ui.updateRoundPoint(Number(point));
+        onChangeText={(score) => {
+          ui.updateRoundScore(Number(score));
         }}
         textAlign='center'
         keyboardType='number-pad'
         returnKeyType='done'
         multiline={false}
         onSubmitEditing={() =>
-          submitPoint(
-            { point: ui.roundPoint, memberIndex },
+          submitScore(
+            { score: ui.roundScore, memberIndex },
             { yanivDomain, navigation }
           )
         }

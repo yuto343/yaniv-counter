@@ -1,9 +1,9 @@
 import { Navigation } from "../screens"
 import { YanivDomain } from "../store/yaniv"
 
-type SubmitPoint = (
+type SubmitScore = (
 	params:{
-		point:number
+		score:number
 		memberIndex:number
 	},
 	context:{
@@ -11,8 +11,8 @@ type SubmitPoint = (
 		navigation:Navigation
 	}
 ) => void
-export const submitPoint:SubmitPoint = ({point,memberIndex},{yanivDomain,navigation}) => {
-	yanivDomain.addRoundPoint(memberIndex,point)
+export const submitScore:SubmitScore = ({score,memberIndex},{yanivDomain,navigation}) => {
+	yanivDomain.addRoundScore(memberIndex,score)
 
 
 	yanivDomain.nextMemberExist(memberIndex) ?
