@@ -1,66 +1,66 @@
 import { createContext } from "react";
 import { makeObservable, observable, action, computed } from "mobx";
 
-type member = {
+type Player = {
   name: string;
   scores: number[];
   total: number;
 };
 
 export class YanivDomain {
-  members: member[];
+  players: Player[];
   maxScore: number;
   round: number;
 
   constructor() {
-    this.members = [];
+    this.players = [];
     this.maxScore = 100;
     this.round = 0;
 
     makeObservable<YanivDomain>(this, {
-      members: observable,
-      addMember: action,
+      players: observable,
+      addPlayer: action,
       maxScore: observable,
-      deleteMember: action,
+      deletePlayer: action,
       addRoundScore: action,
       updateRoundScore: action,
       nextMatch: action,
       reset: action,
-      totalMember: computed,
+      totalPlayer: computed,
       topScore: computed,
     });
   }
 
-  get totalMember() {
-    return this.members.length;
+  get totalPlayer() {
+    return this.players.length;
   }
 
   get topScore() {
-    let firstPlace: member = this.members[0];
+    let firstPlace: Player = this.players[0];
 
-    for (const [index, { total }] of this.members.entries()) {
+    for (const [index, { total }] of this.players.entries()) {
       if (firstPlace.total < total) continue;
-      firstPlace = this.members[index];
+      firstPlace = this.players[index];
     }
     return firstPlace.total;
   }
 
-  totalScore(memberIndex: number) {
+  totalScore(playerIndex: number) {
     let totalScore = 0;
 
-    for (const score of this.members[memberIndex].scores) {
+    for (const score of this.players[playerIndex].scores) {
       totalScore += score;
     }
 
     return totalScore;
   }
 
-  addMember(name: string): void {
-    this.members = [...this.members, { name, scores: [], total: 0 }];
+  addPlayer(name: string): void {
+    this.players = [...this.players, { name, scores: [], total: 0 }];
   }
 
-  deleteMember(name: string): void {
-    this.members = this.members.filter((member) => member.name !== name);
+  deletePlayer(name: string): void {
+    this.players = this.players.filter((player) => player.name !== name);
   }
 
   changeMaxScore(score: number): void {
@@ -71,39 +71,39 @@ export class YanivDomain {
     this.round++;
   }
 
-  addRoundScore(memberIndex: number, score: number): void {
-    const targetMember = this.members[memberIndex];
-    targetMember.scores[this.round - 1] = score;
-    targetMember.total += score;
+  addRoundScore(playerIndex: number, score: number): void {
+    const targetPlayer = this.players[playerIndex];
+    targetPlayer.scores[this.round - 1] = score;
+    targetPlayer.total += score;
   }
 
-  nextMemberExist(memberIndex: number): boolean {
-    return this.members.length >= memberIndex + 2;
+  nextPlayerExist(playerIndex: number): boolean {
+    return this.players.length >= playerIndex + 2;
   }
 
   updateRoundScore(
-    memberIndex: number,
+    playerIndex: number,
     scoreIndex: number,
     score: number
   ): void {
-    this.members[memberIndex].scores[scoreIndex] = score;
+    this.players[playerIndex].scores[scoreIndex] = score;
     let total = 0;
-    for (const score of this.members[memberIndex].scores) {
+    for (const score of this.players[playerIndex].scores) {
       total += score;
     }
-    this.members[memberIndex].total = total;
+    this.players[playerIndex].total = total;
   }
 
   nextMatch(): void {
-    this.members.forEach((_, index) => {
-      this.members[index].scores = [];
-      this.members[index].total = 0;
+    this.players.forEach((_, index) => {
+      this.players[index].scores = [];
+      this.players[index].total = 0;
     });
     this.round = 0;
   }
 
   reset(): void {
-    this.members = [];
+    this.players = [];
     this.maxScore = 100;
     this.round = 0;
   }

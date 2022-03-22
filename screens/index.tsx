@@ -6,7 +6,7 @@ import {
 } from "@react-navigation/native-stack";
 import { View, StyleSheet } from "react-native";
 import { Entrance } from "./entrance";
-import { Members } from "./members";
+import { Players } from "./players";
 import { YanivContext, YanivDomain } from "../store/yaniv";
 import { Home } from "./home";
 import { Result } from "./result";
@@ -16,11 +16,11 @@ import { ScoreEdit } from "./score-edit";
 export type StackParamList = {
   // undefinedはparamsがないということ
   entrance: undefined;
-  members: undefined;
+  players: undefined;
   maxScore: undefined;
   home: undefined;
-  result: { memberIndex: number };
-  scoreEdit: { memberIndex: number };
+  result: { playerIndex: number };
+  scoreEdit: { playerIndex: number };
 };
 
 export type Navigation = NativeStackScreenProps<StackParamList>["navigation"];
@@ -36,7 +36,7 @@ export const Screens = () => (
           screenOptions={{ headerShown: false }}
         >
           <Stack.Screen component={Entrance} name='entrance' />
-          <Stack.Screen component={Members} name='members' />
+          <Stack.Screen component={Players} name='players' />
           <Stack.Screen component={MaxScore} name='maxScore' />
           <Stack.Screen component={Home} name='home' />
           <Stack.Screen component={Result} name='result' />

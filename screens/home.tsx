@@ -31,37 +31,37 @@ export const Home: FunctionComponent<Props> = ({ navigation }) => {
             <Text style={styles.maxScore}>Max {yanivDomain.maxScore}</Text>
           </View>
 
-          {/* メンバーたち */}
-          <View style={styles.memberList}>
-            {yanivDomain.members.map((member, memberIndex) => (
+          {/* プレイヤーたち */}
+          <View style={styles.playerList}>
+            {yanivDomain.players.map((player, playerIndex) => (
               <TouchableOpacity
-                key={member.name}
-                style={styles.member}
+                key={player.name}
+                style={styles.player}
                 onPress={() =>
-                  navigation.navigate("scoreEdit", { memberIndex })
+                  navigation.navigate("scoreEdit", { playerIndex })
                 }
               >
                 <Text style={styles.name}>
                   {/* 一位なら絵文字 */}
                   {yanivDomain.round !== 0 &&
-                    member.total === yanivDomain.topScore &&
+                    player.total === yanivDomain.topScore &&
                     "🥇"}
 
                   {/* 100超えたらドクロ */}
-                  {member.total >= yanivDomain.maxScore && "💀"}
+                  {player.total >= yanivDomain.maxScore && "💀"}
 
-                  {member.name}
+                  {player.name}
                 </Text>
 
                 {/* ポイント表示 */}
                 <View style={styles.scores}>
-                  {member.scores.map((score, index) => (
+                  {player.scores.map((score, index) => (
                     <Text style={styles.score} key={index}>
                       {score}
                     </Text>
                   ))}
                   <Text style={styles.totalScore}>
-                    {yanivDomain.totalScore(memberIndex)}
+                    {yanivDomain.totalScore(playerIndex)}
                   </Text>
                 </View>
               </TouchableOpacity>
@@ -75,7 +75,7 @@ export const Home: FunctionComponent<Props> = ({ navigation }) => {
               <PrimaryButton
                 onPress={() => {
                   yanivDomain.incrementRound();
-                  navigation.navigate("result", { memberIndex: 0 });
+                  navigation.navigate("result", { playerIndex: 0 });
                 }}
               >
                 <Text style={styles.label}>Add Result</Text>
@@ -95,7 +95,7 @@ export const Home: FunctionComponent<Props> = ({ navigation }) => {
                         yanivDomain.nextMatch();
                         navigation.reset({
                           index: 0,
-                          routes: [{ name: "members" }],
+                          routes: [{ name: "players" }],
                         });
                       }
                     )
@@ -154,10 +154,10 @@ const styles = StyleSheet.create({
     fontSize: CSS_FONT_SIZE.PX_18,
     fontFamily: "Nunito-Bold",
   },
-  memberList: {
+  playerList: {
     marginTop: CSS_SPACING.PX_8,
   },
-  member: {
+  player: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",

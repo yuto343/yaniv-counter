@@ -1,20 +1,23 @@
-import { Navigation } from "../screens"
-import { YanivDomain } from "../store/yaniv"
+import { Navigation } from "../screens";
+import { YanivDomain } from "../store/yaniv";
 
 type SubmitScore = (
-	params:{
-		score:number
-		memberIndex:number
-	},
-	context:{
-		yanivDomain:YanivDomain
-		navigation:Navigation
-	}
-) => void
-export const submitScore:SubmitScore = ({score,memberIndex},{yanivDomain,navigation}) => {
-	yanivDomain.addRoundScore(memberIndex,score)
+  params: {
+    score: number;
+    playerIndex: number;
+  },
+  context: {
+    yanivDomain: YanivDomain;
+    navigation: Navigation;
+  }
+) => void;
+export const submitScore: SubmitScore = (
+  { score, playerIndex },
+  { yanivDomain, navigation }
+) => {
+  yanivDomain.addRoundScore(playerIndex, score);
 
-
-	yanivDomain.nextMemberExist(memberIndex) ?
-	 navigation.push("result",{memberIndex:memberIndex + 1}) : navigation.navigate("home")
-}
+  yanivDomain.nextPlayerExist(playerIndex)
+    ? navigation.push("result", { playerIndex: playerIndex + 1 })
+    : navigation.navigate("home");
+};

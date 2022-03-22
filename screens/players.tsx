@@ -9,37 +9,37 @@ import {
   TextInput,
 } from "react-native";
 import { Navigation } from ".";
-import { addMember } from "../actions/members";
+import { addPlayer } from "../actions/players";
 import { IconClose, IconClose2, IconPlus } from "../components/shared/icon";
 import { PrimaryButton } from "../components/shared/primary-button";
 import { CSS_COLOR, CSS_FONT_SIZE, CSS_SPACING } from "../constants/style";
 import { YanivContext } from "../store/yaniv";
-import { MembersUi } from "../uis/members";
+import { PlayersUi } from "../uis/players";
 
 type Props = {
   navigation: Navigation;
 };
-export const Members: FunctionComponent<Props> = ({ navigation }) => {
+export const Players: FunctionComponent<Props> = ({ navigation }) => {
   const yanivDomain = useContext(YanivContext);
 
-  const ui = new MembersUi();
+  const ui = new PlayersUi();
   return (
     <View style={styles.container}>
       {/* タイトル */}
-      <Text style={styles.heading}>Enter All Members</Text>
+      <Text style={styles.heading}>Enter All Players</Text>
 
       {/* メンバーたち */}
       <Observer>
         {() => (
           <View>
-            {yanivDomain.members.map((member) => (
-              <View key={member.name} style={styles.user}>
+            {yanivDomain.players.map((player) => (
+              <View key={player.name} style={styles.user}>
                 <View style={styles.nameWrapper}>
-                  <Text style={styles.name}>{member.name}</Text>
+                  <Text style={styles.name}>{player.name}</Text>
                 </View>
                 <TouchableOpacity
                   onPress={() => {
-                    yanivDomain.deleteMember(member.name);
+                    yanivDomain.deletePlayer(player.name);
                   }}
                 >
                   <View style={styles.deleteButton}>
@@ -65,7 +65,7 @@ export const Members: FunctionComponent<Props> = ({ navigation }) => {
           <View style={styles.button}>
             <PrimaryButton
               onPress={() => navigation.navigate("maxScore")}
-              disabled={yanivDomain.members.length < 2}
+              disabled={yanivDomain.players.length < 2}
             >
               <Text style={styles.label}>Next</Text>
             </PrimaryButton>
@@ -87,7 +87,7 @@ export const Members: FunctionComponent<Props> = ({ navigation }) => {
                 <View style={styles.modal}>
                   <View style={styles.modalHeader}>
                     <View style={styles.modalHeaderLeft}></View>
-                    <Text style={styles.modalLabel}>Add User</Text>
+                    <Text style={styles.modalLabel}>Add Player</Text>
                     <TouchableOpacity
                       onPress={() => ui.toggleModalOpen()}
                       style={styles.modalHeaderRight}
@@ -109,7 +109,7 @@ export const Members: FunctionComponent<Props> = ({ navigation }) => {
                     returnKeyType='done'
                     multiline={false}
                     onSubmitEditing={() =>
-                      addMember({ name: ui.draftName }, { yanivDomain, ui })
+                      addPlayer({ name: ui.draftName }, { yanivDomain, ui })
                     }
                     autoFocus={true}
                     blurOnSubmit={false}

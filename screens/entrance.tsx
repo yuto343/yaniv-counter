@@ -23,7 +23,7 @@ export const Entrance: FunctionComponent<Props> = ({ navigation }) => {
       </View>
       <Text style={styles.text}>Yaniv Counter</Text>
       <View style={styles.button}>
-        <PrimaryButton onPress={() => navigation.push("members")}>
+        <PrimaryButton onPress={() => navigation.push("players")}>
           <Text style={styles.label}>Start</Text>
         </PrimaryButton>
       </View>

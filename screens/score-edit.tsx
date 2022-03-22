@@ -14,14 +14,14 @@ type Props = {
 
 export const ScoreEdit: FunctionComponent<Props> = ({ navigation, route }) => {
   const yanivDomain = useContext(YanivContext);
-  const { memberIndex } = route.params;
-  const member = yanivDomain.members[memberIndex];
+  const { playerIndex } = route.params;
+  const player = yanivDomain.players[playerIndex];
   return (
     <View style={styles.container}>
       {/* タイトル */}
-      <Text style={styles.heading}>{member.name}</Text>
+      <Text style={styles.heading}>{player.name}</Text>
       <View style={styles.scoreContainer}>
-        {member.scores.map((score, index) => (
+        {player.scores.map((score, index) => (
           <View style={styles.score} key={index}>
             <Text style={styles.round}>Round {index + 1}</Text>
             <TextInput
@@ -29,7 +29,7 @@ export const ScoreEdit: FunctionComponent<Props> = ({ navigation, route }) => {
               keyboardAppearance='dark'
               style={styles.input}
               onChangeText={(score) => {
-                yanivDomain.updateRoundScore(memberIndex, index, Number(score));
+                yanivDomain.updateRoundScore(playerIndex, index, Number(score));
               }}
               textAlign='center'
               keyboardType='number-pad'

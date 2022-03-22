@@ -16,13 +16,13 @@ type Props = {
 export const Result: FunctionComponent<Props> = ({ navigation, route }) => {
   const yanivDomain = useContext(YanivContext);
   const ui = new ResultUi();
-  const { memberIndex } = route.params;
-  const member = yanivDomain.members[memberIndex];
+  const { playerIndex } = route.params;
+  const player = yanivDomain.players[playerIndex];
   return (
     <View style={styles.container}>
       {/* タイトル */}
       <Text style={styles.heading}>Round{yanivDomain.round}</Text>
-      <Text style={styles.lead}>{member.name}`s Score?</Text>
+      <Text style={styles.lead}>{player.name}`s Score?</Text>
       <TextInput
         keyboardAppearance='dark'
         style={styles.input}
@@ -35,7 +35,7 @@ export const Result: FunctionComponent<Props> = ({ navigation, route }) => {
         multiline={false}
         onSubmitEditing={() =>
           submitScore(
-            { score: ui.roundScore, memberIndex },
+            { score: ui.roundScore, playerIndex },
             { yanivDomain, navigation }
           )
         }
