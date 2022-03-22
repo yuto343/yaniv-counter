@@ -1,12 +1,15 @@
 {
   "name": "yaniv-counter",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
     "ios": "expo start --ios",
-    "build:ios":"eas build --platform ios --auto-submit",
-    "build:preview":"eas build --profile preview --platform ios"
+    "build:ios": "eas build --platform ios --auto-submit",
+    "build:preview": "eas build --profile preview --platform ios",
+    "release:patch": "standard-version --release-as patch",
+    "release:minor": "standard-version --release-as minor",
+    "release:major": "standard-version --release-as major"
   },
   "dependencies": {
     "@react-navigation/native": "^6.0.8",
@@ -29,6 +32,8 @@
     "@babel/core": "^7.12.9",
     "@types/react": "~17.0.21",
     "@types/react-native": "~0.64.12",
+    "standard-version": "^7.1.0",
+    "standard-version-expo": "^1.0.3",
     "typescript": "~4.3.5"
   },
   "private": true

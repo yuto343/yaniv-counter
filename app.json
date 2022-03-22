@@ -2,7 +2,7 @@
   "expo": {
     "name": "yaniv-counter",
     "slug": "yaniv-counter",
-    "version": "1.0.3",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -19,7 +19,7 @@
     "ios": {
       "supportsTablet": false,
       "bundleIdentifier": "com.yuto343.yanivcounter",
-      "buildNumber": "3"
+      "buildNumber": "1.0.1"
     },
     "android": {
       "adaptiveIcon": {
