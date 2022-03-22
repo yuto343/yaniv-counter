@@ -72,7 +72,7 @@ export class YanivDomain {
 
   addRoundScore(memberIndex: number, score: number): void {
     const targetMember = this.members[memberIndex];
-    targetMember.scores.push(score);
+    targetMember.scores[this.round - 1] = score;
     targetMember.total += score;
   }
 

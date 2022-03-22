@@ -23,7 +23,7 @@ export const Home: FunctionComponent<Props> = ({ navigation }) => {
         <View style={styles.container}>
           <View style={styles.heading}>
             <Text style={styles.round}>Round {yanivDomain.round}</Text>
-            <Text style={styles.maxScore}>MAX {yanivDomain.maxScore}</Text>
+            <Text style={styles.maxScore}>Max {yanivDomain.maxScore}</Text>
           </View>
 
           {/* メンバーたち */}
@@ -104,7 +104,10 @@ export const Home: FunctionComponent<Props> = ({ navigation }) => {
                       },
                       () => {
                         yanivDomain.reset();
-                        navigation.popToTop();
+                        navigation.reset({
+                          index: 0,
+                          routes: [{ name: "entrance" }],
+                        });
                       }
                     )
                   }
@@ -146,9 +149,10 @@ const styles = StyleSheet.create({
   member: {
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "center",
     backgroundColor: CSS_COLOR.WHITE,
     borderRadius: 10,
-    padding: CSS_SPACING.PX_20,
+    padding: CSS_SPACING.PX_8,
     marginTop: CSS_SPACING.PX_12,
   },
   name: {
@@ -158,6 +162,7 @@ const styles = StyleSheet.create({
   scores: {
     flexDirection: "row",
     alignItems: "center",
+    justifyContent: "center",
   },
   score: {
     fontFamily: "Nunito-Bold",
@@ -167,9 +172,10 @@ const styles = StyleSheet.create({
   totalScore: {
     fontFamily: "Nunito-Bold",
     fontSize: CSS_FONT_SIZE.PX_20,
-    marginLeft: CSS_SPACING.PX_20,
+    marginLeft: CSS_SPACING.PX_12,
+    marginRight: CSS_SPACING.PX_4,
   },
-  button: { width: "50%", marginTop: CSS_SPACING.PX_12 },
+  button: { width: "50%" },
   buttonContainer: {
     width: "100%",
     marginTop: CSS_SPACING.PX_32,
@@ -177,7 +183,7 @@ const styles = StyleSheet.create({
   },
   label: {
     fontFamily: "Nunito-Bold",
-    fontSize: CSS_FONT_SIZE.PX_20,
+    fontSize: CSS_FONT_SIZE.PX_18,
     letterSpacing: 1.2,
     textAlign: "center",
     color: CSS_COLOR.WHITE,
@@ -186,7 +192,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
-    marginTop: CSS_SPACING.PX_32,
+    marginTop: CSS_SPACING.PX_20,
   },
   secondaryButton: { width: "40%" },
   secondaryLabel: {

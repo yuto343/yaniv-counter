@@ -25,7 +25,9 @@ export const MaxScore: FunctionComponent<Props> = ({ navigation }) => {
         keyboardType='number-pad'
         returnKeyType='done'
         multiline={false}
-        onSubmitEditing={() => navigation.navigate("home")}
+        onSubmitEditing={() =>
+          navigation.reset({ index: 0, routes: [{ name: "home" }] })
+        }
         autoFocus={true}
         blurOnSubmit={false}
       />
