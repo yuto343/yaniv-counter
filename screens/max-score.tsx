@@ -12,7 +12,7 @@ export const MaxScore: FunctionComponent<Props> = ({ navigation }) => {
   return (
     <View style={styles.container}>
       {/* タイトル */}
-      <Text style={styles.heading}>Maximum Score?</Text>
+      <Text style={styles.heading}>Maximum score?</Text>
 
       <TextInput
         defaultValue={`${yanivDomain.maxScore}`}
