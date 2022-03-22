@@ -23,6 +23,7 @@ export class YanivDomain {
       maxScore: observable,
       deleteMember: action,
       addRoundScore: action,
+      updateRoundScore: action,
       nextMatch: action,
       reset: action,
       totalMember: computed,
@@ -78,6 +79,14 @@ export class YanivDomain {
 
   nextMemberExist(memberIndex: number): boolean {
     return this.members.length >= memberIndex + 2;
+  }
+
+  updateRoundScore(
+    memberIndex: number,
+    scoreIndex: number,
+    score: number
+  ): void {
+    this.members[memberIndex].scores[scoreIndex] = score;
   }
 
   nextMatch(): void {

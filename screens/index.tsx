@@ -11,6 +11,7 @@ import { YanivContext, YanivDomain } from "../store/yaniv";
 import { Home } from "./home";
 import { Result } from "./result";
 import { MaxScore } from "./max-score";
+import { ScoreEdit } from "./score-edit";
 
 export type StackParamList = {
   // undefinedはparamsがないということ
@@ -19,6 +20,7 @@ export type StackParamList = {
   maxScore: undefined;
   home: undefined;
   result: { memberIndex: number };
+  scoreEdit: { memberIndex: number };
 };
 
 export type Navigation = NativeStackScreenProps<StackParamList>["navigation"];
@@ -38,6 +40,7 @@ export const Screens = () => (
           <Stack.Screen component={MaxScore} name='maxScore' />
           <Stack.Screen component={Home} name='home' />
           <Stack.Screen component={Result} name='result' />
+          <Stack.Screen component={ScoreEdit} name='scoreEdit' />
         </Stack.Navigator>
       </NavigationContainer>
     </YanivContext.Provider>

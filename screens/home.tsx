@@ -1,7 +1,12 @@
 import React, { useContext } from "react";
 import type { FunctionComponent } from "react";
-import { View, Text, StyleSheet } from "react-native";
-import { CSS_COLOR, CSS_FONT_SIZE, CSS_SPACING } from "../constants/style";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  CSS_COLOR,
+  CSS_DROP_SHADOW_LIGHT,
+  CSS_FONT_SIZE,
+  CSS_SPACING,
+} from "../constants/style";
 import { Navigation } from ".";
 import { YanivContext } from "../store/yaniv";
 import { PrimaryButton } from "../components/shared/primary-button";
@@ -29,7 +34,13 @@ export const Home: FunctionComponent<Props> = ({ navigation }) => {
           {/* メンバーたち */}
           <View style={styles.memberList}>
             {yanivDomain.members.map((member, memberIndex) => (
-              <View key={member.name} style={styles.member}>
+              <TouchableOpacity
+                key={member.name}
+                style={styles.member}
+                onPress={() =>
+                  navigation.navigate("scoreEdit", { memberIndex })
+                }
+              >
                 <Text style={styles.name}>
                   {/* 一位なら絵文字 */}
                   {yanivDomain.round !== 0 &&
@@ -53,14 +64,14 @@ export const Home: FunctionComponent<Props> = ({ navigation }) => {
                     {yanivDomain.totalScore(memberIndex)}
                   </Text>
                 </View>
-              </View>
+              </TouchableOpacity>
             ))}
           </View>
 
           {/* ボタンたち */}
           <View style={styles.buttonContainer}>
+            {/* リザルト追加 */}
             <View style={styles.button}>
-              {/* リザルト追加 */}
               <PrimaryButton
                 onPress={() => {
                   yanivDomain.incrementRound();
@@ -154,6 +165,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: CSS_SPACING.PX_8,
     marginTop: CSS_SPACING.PX_12,
+    ...CSS_DROP_SHADOW_LIGHT,
   },
   name: {
     fontFamily: "Nunito-Bold",

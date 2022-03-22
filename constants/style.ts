@@ -54,3 +54,15 @@ export const CSS_DROP_SHADOW = {
 	elevation: 1,
 } as const
 
+export const CSS_DROP_SHADOW_LIGHT = {
+	shadowColor: '#131313',
+	shadowOffset: {
+		width: 0,
+		height: 1,
+	},
+	shadowOpacity: 0.1,
+	shadowRadius: 0,
+	elevation: 1,
+} as const
+
+
