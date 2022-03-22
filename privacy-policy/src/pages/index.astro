@@ -1,6 +1,7 @@
 ---
 // Component Imports
-import Button from '../components/Button.astro';
+import Heading3 from "../components/Heading3.astro"
+import Text from "../components/Text.astro"
 import '../styles/global.css';
 
 // Full Astro Component Syntax:
@@ -11,10 +12,57 @@ import '../styles/global.css';
 	<head>
 		<meta charset="UTF-8" />
 		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
-		<title>Astro + TailwindCSS</title>
+		<title>Yaniv Controller</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
 	</head>
+	<body class="bg-beige-300 p-8">
+		<h1 class="font-bold text-7xl text-center p-8">Yaniv Counter</h1>
+		<h2 class="text-5xl text-center">🃏Privacy Policy🃏</h2>
 
-	<body>
-		<Button>I’m a Tailwind Button!</Button>
+		<p class="text-xl mt-8">本サービスは、以下のプライバシーポリシーを定め、個人情報保護法を遵守すると共に、適切なプライバシー情報の保護に努めます。</p>
+
+		<Heading3>
+		第1条（プライバシー情報の定義）
+		</Heading3>
+
+		<Text>プライバシー情報のうち「個人情報」とは、個人情報保護法にいう「個人情報」を指すものとし、<br>
+					生存する個人に関する情報であって、当該情報に含まれる氏名、連絡先その他の記述等により<br>
+					特定の個人を識別できる情報を指します。</Text>
+
+		<Heading3>
+		第2条（プライバシー情報の取得）
+		</Heading3>
+
+		<Text>
+		  本サービスは現在のところ、ユーザーが入力した名前などの個人情報を一切収集しません。
+		</Text>
+
+		<Heading3>
+		第3条（プライバシーポリシーの変更）
+		</Heading3>
+
+		<Text>
+		本ポリシーの内容は、ユーザーに通知することなく、変更できるものとします。<br>
+		運営者が別途定める場合を除いて、変更後のプライバシーポリシーは、<br>
+		本ページに掲載したときから効力を生じるものとします。
+		</Text>
+
+		<Heading3>
+		第4条（お問い合わせ）
+		</Heading3>
+
+		<Text>
+		本ポリシーに関するお問い合わせは、下記の窓口までお願いいたします。		
+		</Text>
+
+		<p>
+			Email: <a href="mailto:yutopia898@gmail.com" target="_blank" class="text-blue-600">yutopia898@gmail.com</a>
+		</p>
+		<p>
+			Twitter: <a href="https://twitter.com/uchoco898" target="_blank" class="text-blue-600 mt-2">@uchoco898</a>
+		</p>
 	</body>
+	
 </html>
