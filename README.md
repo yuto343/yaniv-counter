@@ -20,6 +20,10 @@
 
 のどれかを叩く。
 
+updator には[standard-version-expo](https://github.com/expo-community/standard-version-expo)を使っている。
+
+- 参考 : https://dev.to/bycedric/simplify-expo-releases-with-standard-version-2f4o
+
 ## 確認・ビルド・配信
 
 開発サーバー立ち上げ
