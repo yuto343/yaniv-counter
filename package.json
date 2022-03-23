@@ -8,7 +8,7 @@
   "scripts": {
     "start": "expo start",
     "ios": "expo start --ios",
-    "build:ios": "eas build --platform ios --auto-submit",
+    "build:ios": "eas build --profile production --platform ios --auto-submit",
     "build:preview": "eas build --profile preview --platform ios",
     "release:patch": "standard-version --release-as patch",
     "release:minor": "standard-version --release-as minor",
@@ -21,6 +21,7 @@
     "expo-application": "~4.0.1",
     "expo-font": "~10.0.4",
     "expo-status-bar": "~1.2.0",
+    "expo-system-ui": "~1.1.0",
     "mobx": "^6.5.0",
     "mobx-react-lite": "^3.3.0",
     "react": "17.0.1",
