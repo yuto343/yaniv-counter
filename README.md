@@ -2,6 +2,8 @@
 
 トランプゲーム「ヤニブ」の点数を記録するためのアプリ。
 
+- https://apps.apple.com/jp/app/yaniv-counter/id1615501749
+
 ## リリースバージョン管理
 
 [standard-version](https://github.com/conventional-changelog/standard-version#can-i-use-standard-version-for-additional-metadata-files-languages-or-version-files)によるバージョン管理をしているので、コミットごとに
